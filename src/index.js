@@ -46,9 +46,3 @@
 		}
 	})
 })()
-
-(function() {
-	'use strict'
-
-	
-})();
