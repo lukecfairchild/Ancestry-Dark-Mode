@@ -1,0 +1,100 @@
+body, #personPageHints {
+	background-color: #696969 !important;
+}
+
+.hntTabHintCard {
+	background-color: #dedede !important;
+}
+
+/* Sources Background color */
+.factsSectionSources {
+	background-color: #777 !important;
+}
+
+/* Non sourced Events */
+.storylineHasTrail {
+	background-color: #a6a6a6 !important;
+}
+
+/* Sourced Events */
+.cardHasSelectAction {
+	background-color: #f2f2f2 !important;
+    color: #000 !important;
+}
+
+/* Card text black*/
+.userCardContent {
+	color: #000 !important;
+}
+
+/* Green Lines */
+.card.cardOutline2.cardOutline2, .cardSelected   {
+	box-shadow: 0 0 0 3px #9CBE30 !important;
+}
+.pathAnimate {
+	stroke: rgb(156, 190, 48)
+}
+.storylineBullet, .storylineHasTrail::after {
+	background-color: #87a329 !important;
+}
+
+/* Links stay pretty */
+.bgDark {
+	color: #005c7d !important;
+}
+
+.facetTitle,
+.editSearch,
+.newSearch,
+.iconArrowSmallDownAfter,
+.iconArrowSmallRight,
+#shortcutSectionLink {
+	color: #d9d9d9 !important;
+}
+
+div.textWrap, tbody tr td {
+	color: #4d4d4d !important;
+}
+
+.allCategoriesTitle, .ancCol {
+	color: #b3b3b3 !important;
+}
+
+.ancBtn.silver {
+    background: #373737;
+}
+
+.trackCover {
+	background-color: #b3b3b3 !important;
+}
+
+.updateFilters {
+	background-color: #999999 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+.iLabel {
+	color: #a6a6a6 !important;
+}
+
+.iconGallery.cardEmptyAction {
+	color: #a6a6a6 !important;
+}
+
+.galleryContent .cardFigure .cardTitle, .noHintsMessage {
+    color: #f2f2f2 !important;
+}
+
+.recordCategory, .factsTitle, .factsSubtitle {
+    color: #333333 !important;
+}
+
+#ListOfHints div p {
+    color: #d9d9d9 !important;
+}
+
+#recordJudgmentPanel {
+	background-color: #ffffee !important;
+    border-top: 1px solid #9e9a91;
+}
