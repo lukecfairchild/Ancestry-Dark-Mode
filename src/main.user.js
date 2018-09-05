@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ancestry Dark Mode
-// @version      0.1
+// @version      0.2
 // @description  Injects custom CSS into ancestry.com to make it more of a dark mode
 // @author       Luke Fairchild
 // @include      https://www.ancestry.com/*
@@ -12,6 +12,7 @@
 	'use strict'
 
 	const setCSS = function (css) {
+
 		if (typeof GM_addStyle != 'undefined') {
 			GM_addStyle(css)
 
@@ -38,11 +39,23 @@
 		}
 	}
 
-	GM_xmlhttpRequest ( {
+	const cachedCSS = GM_getValue('Ancestry.Dark.Mode.Styles', null)
+
+	if (cachedCSS) {
+		setCSS(cachedCSS)
+	}
+
+	GM_xmlhttpRequest ({
 		method : 'GET',
 		url    : 'https://raw.githubusercontent.com/lukecfairchild/Ancestry-Dark-Mode/master/src/Styles.css',
 		onload : function (responseDetails) {
-			setCSS(responseDetails.responseText)
+
+			const pulledCSS = responseDetails.responseText
+
+			if (pulledCSS !== cachedCSS)
+				GM_setValue('Ancestry.Dark.Mode.Styles', pulledCSS)
+				setCSS(pulledCSS)
+			}
 		}
 	})
 })()
