@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ancestry Dark Mode
-// @version      0.2
+// @version      0.3
 // @description  Injects custom CSS into ancestry.com to make it more of a dark mode
 // @author       Luke Fairchild
 // @include      https://www.ancestry.com/*
@@ -52,7 +52,7 @@
 
 			const pulledCSS = responseDetails.responseText
 
-			if (pulledCSS !== cachedCSS)
+			if (pulledCSS !== cachedCSS) {
 				GM_setValue('Ancestry.Dark.Mode.Styles', pulledCSS)
 				setCSS(pulledCSS)
 			}
