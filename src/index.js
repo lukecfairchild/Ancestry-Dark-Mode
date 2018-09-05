@@ -22,25 +22,25 @@
 			addStyle(css)
 
 		} else {
-			const node  = document.createElement('style')
-			const heads = document.getElementsByTagName('head')
+			const element = document.createElement('style')
+			const heads   = document.getElementsByTagName('head')
 
-			node.type = 'text/css'
-			node.appendChild(document.createTextNode(css))
+			element.type = 'text/css'
+			element.appendChild(document.createTextNode(css))
 
 			if (heads.length > 0) {
-				heads[0].appendChild(node)
+				heads[0].appendChild(element)
 
 			// no head yet, stick it whereever
 			} else {
-				document.documentElement.appendChild(node)
+				document.documentElement.appendChild(element)
 			}
 		}
 	}
 
 	GM_xmlhttpRequest ( {
 		method : 'GET',
-		url    : 'https://raw.githubusercontent.com/lukecfairchild/Ancestry-Dark-Mode/master/raw/src/Style.css',
+		url    : 'https://raw.githubusercontent.com/lukecfairchild/Ancestry-Dark-Mode/master/src/Styles.css',
 		onload : function (responseDetails) {
 			setCSS(responseDetails.responseText)
 		}
