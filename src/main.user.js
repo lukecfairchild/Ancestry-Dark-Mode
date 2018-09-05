@@ -1,10 +1,14 @@
 // ==UserScript==
 // @name         Ancestry Dark Mode
-// @version      0.3
+// @version      0.4
 // @description  Injects custom CSS into ancestry.com to make it more of a dark mode
 // @author       Luke Fairchild
 // @include      https://www.ancestry.com/*
+// @run-at       document-start
 // @grant        GM_xmlhttpRequest
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_addStyle
 // @connect      raw.githubusercontent.com
 // ==/UserScript==
 
