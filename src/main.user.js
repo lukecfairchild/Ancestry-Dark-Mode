@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ancestry Dark Mode
-// @version      0.4
+// @version      0.5
 // @description  Injects custom CSS into ancestry.com to make it more of a dark mode
 // @author       Luke Fairchild
 // @include      https://www.ancestry.com/*
@@ -15,7 +15,22 @@
 (function() {
 	'use strict'
 
-	const setCSS = function (css) {
+	const Cache = {}
+	const CSS = {}
+
+	Cache.get = function () {
+
+		return GM_getValue('Ancestry.Dark.Mode.Styles', {})
+	}
+
+	Cache.set = function (css) {
+		GM_setValue('Ancestry.Dark.Mode.Styles', {
+			'css'       : css,
+			'timestamp' : new Date().getTime()
+		})
+	}
+
+	CSS.set = function (css) {
 
 		if (typeof GM_addStyle != 'undefined') {
 			GM_addStyle(css)
@@ -43,23 +58,39 @@
 		}
 	}
 
-	const cachedCSS = GM_getValue('Ancestry.Dark.Mode.Styles', null)
+	CSS.get = function (callback) {
+		if (typeof callback !== 'function') {
+			throw new Error()
+		}
+		GM_xmlhttpRequest ({
+			method : 'GET',
+			url    : 'https://raw.githubusercontent.com/lukecfairchild/Ancestry-Dark-Mode/master/src/Styles.css',
+			onload : function (responseDetails) {
 
-	if (cachedCSS) {
-		setCSS(cachedCSS)
+				callback(responseDetails.responseText)
+			}
+		})
 	}
 
-	GM_xmlhttpRequest ({
-		method : 'GET',
-		url    : 'https://raw.githubusercontent.com/lukecfairchild/Ancestry-Dark-Mode/master/src/Styles.css',
-		onload : function (responseDetails) {
+	const cache = Cache.get()
 
-			const pulledCSS = responseDetails.responseText
+	if (cache.css) {
+		CSS.set(cache.css)
 
-			if (pulledCSS !== cachedCSS) {
-				GM_setValue('Ancestry.Dark.Mode.Styles', pulledCSS)
-				setCSS(pulledCSS)
-			}
+		if (cache.timestamp + (1000 * 60 * 10) < new Date().getTime()) {
+			CSS.get(function (css) {
+
+				if (cache.css !== css) {
+					Cache.set(css)
+					CSS.set(css)
+				}
+			})
 		}
-	})
+
+	} else {
+		CSS.get(function (css) {
+			Cache.set(css)
+			CSS.set(css)
+		})
+	}
 })()
