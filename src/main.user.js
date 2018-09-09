@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ancestry Dark Mode
-// @version      0.5
+// @version      0.6
 // @description  Injects custom CSS into ancestry.com to make it more of a dark mode
 // @author       Luke Fairchild
 // @include      https://www.ancestry.com/*
@@ -79,9 +79,9 @@
 
 		if (cache.timestamp + (1000 * 60 * 10) < new Date().getTime()) {
 			CSS.get(function (css) {
+				Cache.set(css)
 
 				if (cache.css !== css) {
-					Cache.set(css)
 					CSS.set(css)
 				}
 			})
